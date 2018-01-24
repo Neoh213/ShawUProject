@@ -1,0 +1,1 @@
+This is a project for school that takes data from a device and displays the information to the user. 

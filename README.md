@@ -1,0 +1,1 @@
+This is a project for Shaw U. It takes input from a device and gives different output depending on the settings
