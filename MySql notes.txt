@@ -1,0 +1,15 @@
+//insert values into table
+INSERT INTO app_practice(store, sound_level, whenwhere) 
+VALUES ('Legros and Sons', 32425, '2018-01-03 14:40:23');
+
+SELECT title, released_year FROM books 
+ORDER BY released_year DESC LIMIT 1;
+
+
+//highest
+SELECT store, sound_level FROM app_practice WHERE store = 'Legros and Sons'
+ORDER BY sound_level DESC LIMIT 1;
+
+//lowest
+SELECT store, sound_level FROM app_practice WHERE store = 'Legros and Sons'
+ORDER BY sound_level ASC LIMIT 1;

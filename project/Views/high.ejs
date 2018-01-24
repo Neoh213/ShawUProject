@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!--NAVBAR-->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Shaw U Decibel Reader</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Store Information Graphs</a></li>
+      <li><a href="#">Weather</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<div>
+
+  <img src="/sound.jpg" alt="image of sound waves" class = "picture img">
+</div>
+
+<!--split into two rows with bootstrap-->
+
+
+
+    <div class ="right bottom">
+    <link rel = "stylesheet" href = "app.css">
+  <!--need to find out way to display the databases on this page-->
+    <h1> Highest decibel reading for store was:   <strong> <%=sound_level%></strong> at:  <%=store%> on  <%=time%></h1>
+    </div>
+
+
+
+
+<!--second division-->
+  </div>
+    <!--CHART-->
+  <div class =" left bottom" id="chartContainer" style="height: 100px; width: 25%;"></div>
+
+</div>
+
+
+
+<!--<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <form method="POST" action = "/high">
+  <div id="myDropdown" class="dropdown-content">
+    <input type="text" name="store" placeholder="Enter the name of your store" id="myInput" onkeyup="filterFunction()">
+    <a>Legros and Sons</a>
+    <a href="#base">Base</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+    <a href="#custom">Custom</a>
+    <a href="#support">Support</a>
+    <a href="#tools">Tools</a>
+  </div>
+  <button >Submit</button>
+  </form>
+</div> -->
+
+<div class = "center1">
+  <form method="POST" action = "/high">
+<select name="store">
+  <option value="Legros and Sons">Legros and Sons</option>
+  <option value="Hills, Lang and Maggio">Hills, Lang and Maggio</option>
+  <option value="Wilkinson Group">Wilkinson Group</option>
+  <option value="Harber - Bosco">Harber - Bosco</option>
+</select>
+<button class = "button" >Submit</button>
+</form>
+</div>
+
+<!--Scripts-->
+<script src="high.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+
+</script>
+
+<!--GRAPH-->
+<script>
+window.onload = function () {
+
+var dps = []; // dataPoints
+var chart = new CanvasJS.Chart("chartContainer", {
+	title :{
+		text: "Store Data"
+	},
+	axisY: {
+		includeZero: false
+	},
+	data: [{
+		type: "line",
+		dataPoints: dps
+	}]
+});
+
+var xVal = 0;
+var yVal = 100;
+var updateInterval = 1000;
+var dataLength = 20; // number of dataPoints visible at any point
+
+var updateChart = function (count) {
+
+	count = count || 1;
+
+	for (var j = 0; j < count; j++) {
+		yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+		dps.push({
+			x: xVal,
+			y: yVal
+		});
+		xVal++;
+	}
+
+	if (dps.length > dataLength) {
+		dps.shift();
+	}
+
+	chart.render();
+};
+
+updateChart(dataLength);
+setInterval(function(){updateChart()}, updateInterval);
+
+}
+</script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

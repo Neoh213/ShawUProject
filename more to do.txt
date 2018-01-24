@@ -1,0 +1,3 @@
+dashboards find software that takes mySql and makes it visual
+
+show all the data. loudest moments, splash page. 

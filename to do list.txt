@@ -1,0 +1,39 @@
+project info
+
+encode the numbers and put into a data base(check)
+
+
+dweet (makes it easy to record the sound levwel in real time and uses the web to gauge the info)
+
+store it locally and put it into the cloud
+
+make the information graphical for the front end. 
+
+research databases and learn it. (check)
+
+
+InnoDB
+
+date format mysql (check)
+
+
+MYSQL
+	I need date, time, decible level (check)
+
+
+There needs to be two tables. one table will store the
+stores and a primary id. the second table will be for
+each store and have all the data associated with that 
+store.
+
+need a way to identify or select a table and then insert 
+into that table (check)
+
+need to link pythin to mysql
+
+	Make a page to put data on:
+	the page need to have button to input the data varibles from a graph then use that
+	data to create the graph
+
+
+changes color depending on different levels of decibel readings
