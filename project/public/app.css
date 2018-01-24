@@ -165,3 +165,31 @@ input[type=text], select {
   float: right;
 
 }
+
+/*graph CSS*/
+
+#graph{
+  background-color: black;
+}
+
+#levelHeading{
+  color:white;
+}
+
+.white{
+
+color:white;
+}
+
+
+.graph_color{
+background-color: black;
+}
+
+
+canvas{
+
+  width:100% !important;
+  height:300px !important;
+
+}

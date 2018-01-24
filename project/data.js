@@ -43,6 +43,24 @@ app.get("/", function(req, res){
       });
 });
 
+
+//all store information and graphs
+app.get("/storeInfo", function(req, res){
+  var store = req.body.store;
+      var info = "SELECT store, sound_level, whenwhere FROM app_practice WHERE store = \'" +  store + "\' ORDER BY sound_level ASC LIMIT 1";
+      connection.query(info, function(err, results) {
+      if(err) throw err;
+      // var sound_level = results[0].sound_level;
+      // var time = results[0].whenwhere;
+
+      //renders the home page.
+      res.render("storeInfo");
+    //console.log("sound is: " + sound_level + " at: " + store); for debugging
+      });
+});
+
+
+
 //need to get the highest value of a store
 app.post("/high", function(req, res){
   var store = req.body.store;
@@ -58,7 +76,7 @@ app.post("/high", function(req, res){
       });
 });
 //lowest value of a store
-app.post("/high", function(req, res){
+app.post("/low", function(req, res){
   var store = req.body.store;
       var info = "SELECT store, sound_level, whenwhere FROM app_practice WHERE store = \'" +  store + "\' ORDER BY sound_level ASC LIMIT 1";
       connection.query(info, function(err, results) {
