@@ -1,0 +1,9 @@
+got it working
+
+download mysql
+
+		sudo apt-get install mysql-server
+
+
+use sudo mysql -u root -p
+or sudo mysql

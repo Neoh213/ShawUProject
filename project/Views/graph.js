@@ -86,7 +86,7 @@ let timerId = setInterval(function() {
     clearInterval(timerId);
   }
   //see if I can make random numbers and get the graph to run for x seconds
-  readout++;
+  readout = Math.floor(Math.random() *100);
 }, 50);
 
 });

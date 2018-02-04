@@ -13,3 +13,7 @@ ORDER BY sound_level DESC LIMIT 1;
 //lowest
 SELECT store, sound_level FROM app_practice WHERE store = 'Legros and Sons'
 ORDER BY sound_level ASC LIMIT 1;
+
+// all sound levels
+SELECT sound_level FROM app_practice WHERE store = 'Legros and Sons'
+ORDER BY sound_level ASC;

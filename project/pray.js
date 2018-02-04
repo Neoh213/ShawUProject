@@ -140,8 +140,8 @@ app.get("/joke", function(req,res){
 */
 
 //shows port access and prints info to the console if port is running
-app.listen(3000, function(){
-    console.log("Server running on 3000!")
+app.listen(3306, function(){
+    console.log("Server running on 3306!")
 });
 
 

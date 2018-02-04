@@ -1,3 +1,7 @@
 dashboards find software that takes mySql and makes it visual
 
 show all the data. loudest moments, splash page. 
+
+make a variable to store colors
+
+make a random nunber generator to test the graph data
