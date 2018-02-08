@@ -26,7 +26,8 @@ var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'DJ',
   database : 'practice',
-  password : 'Neoheartless1'   //your root user's password
+  password : 'Neoheartless1',  //your root user's password
+  port: '3306'
 });
 
 //home page and shows the count of the stores on the command terminal
@@ -140,7 +141,7 @@ app.get("/joke", function(req,res){
 */
 
 //shows port access and prints info to the console if port is running
-app.listen(3306, function(){
+app.listen(8080, function(){
     console.log("Server running on 3306!")
 });
 
