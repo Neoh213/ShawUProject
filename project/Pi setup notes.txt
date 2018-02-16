@@ -1,0 +1,26 @@
+will need to install node
+
+use: wget http://node-arm.herokuapp.com/node_latest_armhf.deb 
+sudo dpkg -i node_latest_armhf.deb
+
+sudo apt get npm
+
+3. apt-get install mysql-client
+   apt-get install mysql-server
+
+4. install mysql connector libiraries. 
+	pip search mysql-connector | grep --color mysql-connector-python
+	 pip install mysql-connector-python-rf
+
+for windows (install pip)
+	install python
+	Download get-pip.py to a folder on your computer.
+	 Open a command prompt window and navigate to the 
+	folder containing get-pip.py. Then run python get-pip.py. 
+	This will install pip.
+	after installing pip go to C:\Python27\Scripts to run.
+	
+
+interacting with database
+	https://www.thegeekstuff.com/2016/06/mysql-connector-python
+	http://www.mikusa.com/python-mysql-docs/row_results.html
