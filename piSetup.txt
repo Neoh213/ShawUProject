@@ -7,3 +7,13 @@ download mysql
 
 use sudo mysql -u root -p
 or sudo mysql
+
+	troubleshooting privileges
+		use mysql;
+		update user set password=null where User='root';
+		flush privileges;
+		quit;
+
+at some point may neeed to install npm python-shell
+
+https://www.facebook.com/skillprogramming/videos/vb.1873819939516224/2089501391281410/?type=2&theater&comment_id=415226358926572&notif_t=comment_mention&notif_id=1519783854203786

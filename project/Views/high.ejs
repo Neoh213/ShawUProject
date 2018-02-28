@@ -51,6 +51,8 @@
     <div class="col-sm-6" style="background-color:#872333;">
       <h1> Highest decibel reading for store was:   <strong> <%=sound_level%></strong>
        at:  <%=store%> on  <%=time%></h1>
+
+       <h2>Sound test will go here: <%=reading%> </h2>
     </div>
   </div>
 </div>
@@ -199,6 +201,8 @@ let timerId = setInterval(function() {
   }
   //see if I can make random numbers and get the graph to run for x seconds
   readout = Math.floor(Math.random() *100);
+  //use this when hooking up to Pi.
+  readout = <%=reading%>
 }, 500);
 
 });
