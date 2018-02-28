@@ -37,30 +37,23 @@ var currentSoundLevel = "test";
 
 // Use python shell
 var PythonShell = require('python-shell');
-var pyshell = new PythonShell(myPythonScriptPath);
 
-pyshell.on('message', function (message) {
-    // received a message sent from the Python script (a simple "print" statement)
-    currentSoundLevel = parseInt(message);
-    console.log("ran");
-})
+
+
 //var currentSoundLevel =
 
 
 // end the input stream and allow the process to exit
-pyshell.end(function (err) {
-    if (err){
-        throw err;
-    };
 
-});
 
-console.log(currentSoundLevel);
+//console.log(currentSoundLevel);
 
 
 //home page and shows the count of the stores on the command terminal
 app.get("/", function(req, res){
-      var info = "SELECT COUNT(*) as count FROM app_practice";
+  
+var pyshell = new PythonShell(myPythonScriptPath);
+      pyshell.on('message', function (message) {var info = "SELECT COUNT(*) as count FROM app_practice";
       connection.query(info, function(err, results) {
       if(err) throw err;
       var count = results[0].count;
@@ -68,9 +61,18 @@ app.get("/", function(req, res){
       var sound_level = 0;
       var time = 0;
       var store = "insert";
-      var reading = currentSoundLevel;
-      res.render("high", {sound_level: sound_level, store: store,time: time, reading: reading});
-      });
+      var currentSoundLevel = "test";
+          // received a message sent from the Python script (a simple "print" statement)
+          currentSoundLevel = parseInt(message);
+          console.log("ran");
+          console.log(currentSoundLevel + " in shell");
+
+          var reading = currentSoundLevel;
+        console.log(currentSoundLevel + "outside py shell and in get function");
+          res.render("high", {sound_level: sound_level, store: store,time: time, reading: reading});
+          });
+      })
+
 });
 
 
@@ -191,5 +193,3 @@ app.post("/storeInfo", function(req, res){
     //console.log("sound is: " + sound_level + " at: " + store); for debugging
       });
 });
-
-console.log(currentSoundLevel);
