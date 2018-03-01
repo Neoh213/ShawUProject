@@ -23,7 +23,7 @@
 
 <!--split into two rows with bootstrap-->
 
-<div class = "container push">
+<!--<div class = "container push">
   <div class = "row">
     <div class = "col-sm-12 content" style="background-color:#872333;">
     <form method="POST" action = "/high">
@@ -37,10 +37,10 @@
   </form>
   </div>
   </div>
-  </div>
+</div> -->
 <!--split into two rows with bootstrap-->
 
-<div class="container-fluid push2">
+<!--<div class="container-fluid push2">
   <div class="row">
     <div class="col-sm-6" style="background-color:#872333;">
       <h1> Highest decibel reading for store was:   <strong> <%=sound_level%></strong>
@@ -59,7 +59,7 @@
 
 <div class="container-fluid push2">
   <div class="row">
-    <div class="col-sm-12" style="background-color:#872333;">
+    <div class="col-sm-12" style="background-color:#872333;"> -->
 
 
 
@@ -106,7 +106,7 @@ function filterFunction() {
 
 </script>
 
-
+<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <!-- Dynamic Graph-->
@@ -146,7 +146,7 @@ var myChart = new Chart(ctx, {
 
 }
 });
-var readout = 5;
+var readout = <%=reading%> ;
 setTimeout(function() {
    addData(myChart, [], 0);
 	 console.log(readout);
@@ -180,32 +180,41 @@ document.getElementById("soundLevel").innerHTML = readout;
 });
 
 */
-canvas.addEventListener("click", function() {
+//ValueChange might work
+
+window.addEventListener("load", function() {
 addData(myChart, [readout], 0);
 if(readout >=100)
 {
 readout =100;
 }
 else{
-	readout +=5;
+//	readout +=5;
 }
 var from = 0;
 var to = 100;
 
+//create xhr object
+var xhr = new XMLHttpRequest();
 
-let timerId = setInterval(function() {
-  document.getElementById("soundLevel").innerHTML = readout;
+setInterval(function() {
+  document.getElementById("soundLevel").innerHTML = <%=reading%>;
   addData(myChart, [readout], 0);
   if (readout == to) {
-    clearInterval(timerId);
+    //clearInterval(timerId);
   }
   //see if I can make random numbers and get the graph to run for x seconds
-//  readout = Math.floor(Math.random() *100);
+// readout = Math.floor(Math.random() *100);
   //use this when hooking up to Pi.
-  readout = <%=reading%>
+//  readout = <%=reading%>
 }, 500);
 
 });
+
+/*********************************************/
+
+
+/**********************************************/
 
 /* just for debugging, remove in final build
 canvas.addEventListener("mouseover", function() {

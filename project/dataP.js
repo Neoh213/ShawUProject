@@ -11,6 +11,8 @@ var app = express();
 var mysql = require('mysql');
 var bodyParser = require("body-parser")
 var PythonShell = require('python-shell');
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 
 
@@ -32,28 +34,29 @@ var connection = mysql.createConnection({
 
 //will be used throughout the program
 var myPythonScriptPath = 'test.py';
-
 var currentSoundLevel = "test";
 
-// Use python shell
+// Use python shell and interact with python file setup
 var PythonShell = require('python-shell');
+var util = require("util");
+var spawn = require("child_process").spawn;
+var process = spawn('python',["test.py"]);
 
+//util.log('readingin')
 
+//grabs python output
+process.stdout.on('data',function(chunk){
+  currentSoundLevel = chunk.toString('utf8');// buffer to string
 
-//var currentSoundLevel =
+console.log(currentSoundLevel);
+});
 
-
-// end the input stream and allow the process to exit
-
-
-//console.log(currentSoundLevel);
 
 
 //home page and shows the count of the stores on the command terminal
-app.get("/", function(req, res){
-  
-var pyshell = new PythonShell(myPythonScriptPath);
-      pyshell.on('message', function (message) {var info = "SELECT COUNT(*) as count FROM app_practice";
+app.get("/", function(req, res,next){
+
+var info = "SELECT COUNT(*) as count FROM app_practice";
       connection.query(info, function(err, results) {
       if(err) throw err;
       var count = results[0].count;
@@ -61,19 +64,24 @@ var pyshell = new PythonShell(myPythonScriptPath);
       var sound_level = 0;
       var time = 0;
       var store = "insert";
-      var currentSoundLevel = "test";
+      //var currentSoundLevel = "test";
           // received a message sent from the Python script (a simple "print" statement)
-          currentSoundLevel = parseInt(message);
-          console.log("ran");
           console.log(currentSoundLevel + " in shell");
 
           var reading = currentSoundLevel;
         console.log(currentSoundLevel + "outside py shell and in get function");
           res.render("high", {sound_level: sound_level, store: store,time: time, reading: reading});
+        //  res.send(currentSoundLevel);
+        //  res.json(currentSoundLevel);
           });
-      })
 
 });
+
+
+/*********************************************/
+
+
+/*************************************************/
 
 
 //all store information and graphs
