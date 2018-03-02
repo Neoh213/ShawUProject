@@ -1,15 +1,16 @@
 # cat con-test.py
 import time
 import sys
+from random import randint
 
 store = 'Legros and Sons'
-sound_level = 13
+#sound_level = 0
 
-for x in range(0,20):
-    print(sound_level)
+for x in range(0,100):
+    print (randint(1,100))
     sys.stdout.flush()
-    sound_level = sound_level+1
-    time.sleep(1);
+    #sound_level = sound_level+1
+    time.sleep(.5);
     
 #print(20)
 

@@ -50,9 +50,21 @@ process.stdout.on('data',function(chunk){
 
 console.log(currentSoundLevel);
 });
+/*********************************************/
 
+var obj = {foo: 1};
+setInterval(
+  function(){ obj.foo++; },
+  1000
+);
 
+/*************************************************/
 
+app.get('/value', function(req,res,next){
+  res.send(currentSoundLevel);
+});
+
+/***************************/
 //home page and shows the count of the stores on the command terminal
 app.get("/", function(req, res,next){
 
@@ -70,15 +82,25 @@ var info = "SELECT COUNT(*) as count FROM app_practice";
 
           var reading = currentSoundLevel;
         console.log(currentSoundLevel + "outside py shell and in get function");
-          res.render("high", {sound_level: sound_level, store: store,time: time, reading: reading});
+
+
+          res.render("high", {sound_level: sound_level, store: store,time: time, reading: reading, obj:obj});
         //  res.send(currentSoundLevel);
         //  res.json(currentSoundLevel);
-          });
+      });
 
 });
 
 
+
 /*********************************************/
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
+
+// http.listen(3000, function(){
+//   console.log('listening on *:3000');
+// });
 
 
 /*************************************************/

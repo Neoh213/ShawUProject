@@ -21,6 +21,10 @@
   <img src="/sound.jpg" alt="image of sound waves" class = "picture img">
 </div>
 
+<div>
+  <h1 id="incremental"></h1>
+</div>
+
 <!--split into two rows with bootstrap-->
 
 <!--<div class = "container push">
@@ -198,8 +202,8 @@ var to = 100;
 var xhr = new XMLHttpRequest();
 
 setInterval(function() {
-  document.getElementById("soundLevel").innerHTML = <%=reading%>;
-  addData(myChart, [readout], 0);
+  //document.getElementById("soundLevel").innerHTML = readout;
+  //addData(myChart, [readout], 0);
   if (readout == to) {
     //clearInterval(timerId);
   }
@@ -213,7 +217,24 @@ setInterval(function() {
 
 /*********************************************/
 
+var x = 0
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
+async function demo() {
+  for(var i = 0; i<100; i++){
+  $.get("/value",function(data){
+  readout = data;
+  addData(myChart, [readout], 0);
+    document.getElementById("soundLevel").innerHTML = readout;
+
+    })
+      await sleep(500);
+        };
+}
+
+demo();
 /**********************************************/
 
 /* just for debugging, remove in final build
